@@ -12,6 +12,20 @@ You can pass arguments to apache bench by overriding the docker command:
 docker compose run --rm -it bench -c 10 -n 10 http://keria:3902/spec.yaml
 ```
 
+# Testing with hio-server
+
+I have also added an example server just using hio and serving up an endpoint without content. It can be started like this:
+
+```
+docker compose up -d hio-server
+```
+
+And tested like this (note the trailing slash seems to be required):
+
+```
+docker compose run --rm -it bench -c 100 -n 1000 http://hio-server:8081/
+```
+
 ## Example outputs
 
 This test run is 100 requests using a concurrency of 10.

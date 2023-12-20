@@ -7,7 +7,16 @@ services:
         timeout: 3s
         retries: 5
         start_period: 2s
-  
+
+  hio-server:
+    build: ./hio-server
+    ports:
+      - 8081:8081
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=UTF-8
+      - PORT=8081
+
   bench:
     depends_on:
       keria:
