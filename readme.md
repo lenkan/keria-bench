@@ -26,6 +26,12 @@ And tested like this (note the trailing slash seems to be required):
 docker compose run --rm -it bench -c 100 -n 1000 http://hio-server:8081/
 ```
 
+# Testing with node.js client instead of apache bench
+
+```
+docker compose run --rm -it nodejs nodejs/client-fetch.js  http://keria:3902/spec.yaml
+```
+
 ## Example outputs
 
 This test run is 100 requests using a concurrency of 10.

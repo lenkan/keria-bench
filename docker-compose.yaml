@@ -10,8 +10,6 @@ services:
 
   hio-server:
     build: ./hio-server
-    ports:
-      - 8081:8081
     environment:
       - PYTHONUNBUFFERED=1
       - PYTHONIOENCODING=UTF-8
@@ -23,3 +21,9 @@ services:
         condition: service_healthy
     image: jordi/ab
     command: ["-n","100", "-c", "100", "http://keria:3902/spec.yaml"]
+
+  nodejs:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
