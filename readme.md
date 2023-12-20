@@ -1,7 +1,13 @@
 # Run tests
 
+To run tests with the pre set concurrency and count settings:
+
 ```
-docker compose run bench
+docker compose run --rm -it bench
 ```
 
-Fiddle around with the arguments or just install apache bench locally to try different setups.
+You can pass arguments to apache bench by overriding the docker command:
+
+```
+docker compose run --rm -it bench -c 10 -n 10 http://keria:3902/spec.yaml
+```
