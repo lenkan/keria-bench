@@ -1,0 +1,16 @@
+services:
+  keria:
+    image: weboftrust/keria
+    healthcheck:
+        test: ['CMD', 'curl', '-f', 'http://localhost:3902/spec.yaml']
+        interval: 2s
+        timeout: 3s
+        retries: 5
+        start_period: 2s
+  
+  bench:
+    depends_on:
+      keria:
+        condition: service_healthy
+    image: jordi/ab
+    command: ["-n","100", "-c", "100", "http://keria:3902/spec.yaml"]
